@@ -40,6 +40,15 @@ router.put('/changestatus/:id', async (req, res) => {
     });
 });
 
+router.put('/assignsupport/:id', async (req, res) => {
+    await support.findByIdAndUpdate(req.params.id, req.body);
+    //TODO 
+    // LOS MENSAJES SON DINAMICOS
+    res.json({
+        res: true
+    });
+});
+
 
 export default router
 

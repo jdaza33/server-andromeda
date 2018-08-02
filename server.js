@@ -4,9 +4,9 @@ import morgan from 'morgan'
 import passport from 'passport'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import fs from 'fs'
+import fileType from 'file-type'
 import multer from 'multer'
-import serveStatic from 'serve-static'
-
 
 const app = express();
 
@@ -28,11 +28,12 @@ app.use(passport.initialize());
 app.use(cookieParser());
 app.use(cors());
 
+
 //Upload
 
-let storage = multer.diskStorage({
+let storageSupport = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'public/img/uploads')
+        cb(null, 'uploads/support')
     },
     filename: (req, file, cb) => {
         cb(null, 'img-' + Date.now())
@@ -41,17 +42,17 @@ let storage = multer.diskStorage({
 
 let storageProfile = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'public/img/profile')
+        cb(null, 'uploads/profile')
     },
     filename: (req, file, cb) => {
         cb(null, 'img-' + Date.now())
     }
 });
 
-let upload = multer({ storage: storage })
+let uploadSupport = multer({ storage: storageSupport })
 let uploadProfile = multer({ storage: storageProfile })
 
-app.post('/upsupport', upload.array('images', 12), (req, res, next) => {
+app.post('/upsupport', uploadSupport.array('images', 12), (req, res, next) => {
     try {
         console.log(req.files)
         res.json({
@@ -63,7 +64,7 @@ app.post('/upsupport', upload.array('images', 12), (req, res, next) => {
     }
 })
 
-app.post('/profile', uploadProfile.single('profile'), (req, res, next) => {
+app.post('/upprofile', uploadProfile.single('profile'), (req, res, next) => {
     try {
         console.log(req.file)
         res.json({
@@ -74,6 +75,30 @@ app.post('/profile', uploadProfile.single('profile'), (req, res, next) => {
         res.sendStatus(400);
     }
 })
+
+app.get('/uploads/support/:imagename', (req, res) => {
+
+    let imagename = req.params.imagename
+    let imagepath = __dirname + "/uploads/support/" + imagename
+    let image = fs.readFileSync(imagepath)
+    let mime = fileType(image).mime
+
+    res.writeHead(200, { 'Content-Type': mime })
+    res.end(image, 'binary')
+})
+
+app.get('/uploads/profile/:imagename', (req, res) => {
+
+    let imagename = req.params.imagename
+    let imagepath = __dirname + "/uploads/profile/" + imagename
+    let image = fs.readFileSync(imagepath)
+    let mime = fileType(image).mime
+
+    res.writeHead(200, { 'Content-Type': mime })
+    res.end(image, 'binary')
+})
+
+
 
 //Routes
 import infopersonal from './routes/infoPersonal'
@@ -100,12 +125,13 @@ app.get('/logout', function (req, res) {
 
 
 //Files static
-//app.use(express.static(`../../dist/`));
-
+//app.use(express.static(`/uploads`));
+//app.get('/', express.static(`${__dirname}/uploads/support`))
 
 
 //Output
 app.listen(app.get('port'), () => {
     console.log(`App start on ${app.get('port')}`);
 });
+
 

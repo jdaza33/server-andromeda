@@ -53,7 +53,7 @@ USER.pre('save', async function (next) {
     next();
 });
 
-/*USER.pre('update', async function (next) {
+/*USER.pre('findByIdAndUpdate', async function (next) {
     const user = this;
     const hash = await bcrypt.hash(this.password, 10);
     this.password = hash;

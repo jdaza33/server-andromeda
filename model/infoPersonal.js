@@ -20,6 +20,10 @@ const INFO_PERSONAL = new Schema({
         required: true,
         unique: true
     },
+    phone: {
+        type: String,
+        default: ''
+    },
     birthdate: Date,
     address: {
         country: {

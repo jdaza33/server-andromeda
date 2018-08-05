@@ -4,18 +4,27 @@ const Schema = mongoose.Schema
 
 
 const REPORT = new Schema({
-    id_client: {
+    nro: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     nro_support: {
         type: String,
         required: true,
         unique: true
     },
-    assigned:{
+    total_hours: {
         type: String,
-        default: ''
+        required: true
+    },
+    total_service: {
+        type: String,
+        required: true
+    },
+    invoiced: {
+        type: String,
+        default: 'N'
     },
     ref: {
         type: String,

@@ -1,0 +1,48 @@
+{
+    "infoPersonal": {
+        "name": "Jose",
+        "lastname": "Bolivar",
+        "nit": "V25766194",
+        "email": "blackencio33@gmail.com",
+        "birthdate": "1995-08-02",
+        "address": {
+            "country": "Venezuela",
+            "state": "Carabobo",
+            "city": "Valencia",
+            "location": "Flor Amarillo",
+            "description": "Res. El Alboral"
+        },
+        "photo": "n/a"
+    },
+    "user": {
+        "id_infopersonal": "5b2c14e4444d504de2b2a7ce",
+        "name": "jvicente",
+        "password": "12345",
+        "type_user": 0,
+        "rol": 0,
+        "status": true
+    },
+
+    "root": {
+        "name": "",
+        "nit": "",
+        "email": "",
+        "username": "",
+        "password": "",
+        "type_user": 0
+    },
+
+    "record": {
+        "nro_support": "12345678",
+        "activities": [{
+            "date": "2018-08-03",
+            "nro_activity": "1231231423",
+            "details": [{
+                "title": "Contabilidad",
+                "sub_details": "PC-03",
+                "description": "Sistema operativo",
+                "hours_service": "4"
+            }]
+        }]
+    }
+}

@@ -106,14 +106,18 @@ import user from './routes/user'
 import auth from './routes/auth'
 import others from './routes/others'
 import support from './routes/support'
+import record from './routes/record'
+import report from './routes/report'
+import bill from './routes/bill'
 
-//app.use('/infopersonal', infopersonal);
 app.use('/infopersonal', passport.authenticate('jwt', { session: false }), infopersonal);
-//app.use('/user', user);
 app.use('/user', passport.authenticate('jwt', { session: false }), user);
 app.use('/auth', auth);
 app.use('/others', others);
 app.use('/support', passport.authenticate('jwt', { session: false }), support);
+app.use('/record', passport.authenticate('jwt', { session: false }), record);
+app.use('/report', passport.authenticate('jwt', { session: false }), report);
+app.use('/bill', passport.authenticate('jwt', { session: false }), bill);
 
 //Logout Passport
 app.get('/logout', function (req, res) {

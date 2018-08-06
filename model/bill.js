@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import timestamp from 'mongoose-timestamp'
 const AutoIncrement = require('mongoose-sequence')(mongoose);
+let Float = require('mongoose-float').loadType(mongoose);
 const Schema = mongoose.Schema
 
 
@@ -22,7 +23,7 @@ const BILL = new Schema({
     details: [{
         cant: {
             type: String,
-            default: 'xx'
+            default: '1'
         },
         description: {
             type: String,
@@ -30,7 +31,7 @@ const BILL = new Schema({
         },
         unit_price: {
             type: String,
-            default: '0.00'
+            default: '0'
         },
         total: {
             type: String, 
@@ -48,6 +49,10 @@ const BILL = new Schema({
     total_amount: {
         type: String,
         required: true
+    },
+    status: {
+        type: String,
+        default: 'N'
     },
     ref: {
         type: String,

@@ -36,4 +36,15 @@ router.put('/:id', async (req, res) => {
     });
 });
 
+router.put('/changeinvoiced/:id', async (req, res) => {
+    console.log(req.params.id)
+    console.log(req.body)
+    await report.findByIdAndUpdate(req.params.id, req.body);
+    //TODO 
+    // LOS MENSAJES SON DINAMICOS
+    res.json({
+        res: true
+    });
+});
+
 export default router

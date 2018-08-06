@@ -11,6 +11,22 @@ router.get('/:id', async (req, res) => {
     });
 });
 
+router.get('/ref/:ref', async (req, res) => {
+    const aux = await (bill.find({ ref: req.params.ref}));
+    res.json({
+        bill: aux,
+        res: true
+    });
+});
+
+router.get('/client/:id', async (req, res) => {
+    const aux = await (bill.find({ id_client: req.params.id }));
+    res.json({
+        bill: aux,
+        res: true
+    });
+});
+
 router.post('/', async (req, res) => {
     const aux = new bill(req.body);
     await aux.save();

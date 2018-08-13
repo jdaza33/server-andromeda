@@ -20,16 +20,27 @@ const RECORD = new Schema({
             type: String,
             required: true
         },
-        details: {
+        /*details: {
             type: String
-        },
+        },*/
         description: {
             type: String
         },
         hours_service: {
             type: String,
             required: true
+        },
+        nro_serie: {
+            type: String,
+            required: true
+        },
+        model: {
+            type: String
+        },
+        make: {
+            type: String
         }
+
     }]
 });
 

@@ -19,6 +19,14 @@ router.get('/ref/:ref', async (req, res) => {
     });
 });
 
+router.get('/nro/:nro', async (req, res) => {
+    const aux = await (report.find({"nro": req.params.nro}));
+    res.json({
+        res: true,
+        report: aux
+    });
+});
+
 router.post('/', async (req, res) => {
     const aux = new report(req.body);
     await aux.save();

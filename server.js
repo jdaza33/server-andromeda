@@ -143,6 +143,7 @@ import record from './routes/record'
 import report from './routes/report'
 import bill from './routes/bill'
 import payment from './routes/payment'
+import calendar from './routes/calendar'
 
 app.use('/infopersonal', passport.authenticate('jwt', { session: false }), infopersonal);
 app.use('/user', passport.authenticate('jwt', { session: false }), user);
@@ -153,6 +154,7 @@ app.use('/record', passport.authenticate('jwt', { session: false }), record);
 app.use('/report', passport.authenticate('jwt', { session: false }), report);
 app.use('/bill', passport.authenticate('jwt', { session: false }), bill);
 app.use('/payment', passport.authenticate('jwt', { session: false }), payment);
+app.use('/calendar', passport.authenticate('jwt', { session: false }), calendar);
 
 //Logout Passport
 app.get('/logout', function (req, res) {
